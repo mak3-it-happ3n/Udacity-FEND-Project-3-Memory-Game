@@ -3,19 +3,25 @@
 const nodeList = document.querySelectorAll('.card');
 let list = Array.from(nodeList);
 
+let count = 0;
 
 /////////////////Not working yet:
  // Shuffle the cards:
 list = shuffle(list);
 
  // turning each card over by removing 3 classes:
-
-for (i = 0; i < list.length; i++){
-  list[i].classList.remove("match");
-  list[i].classList.remove("open");
-  list[i].classList.remove("show");
+function reset(){
+  for (i = 0; i < list.length; i++){
+    list[i].classList.remove("match");
+    list[i].classList.remove("open");
+    list[i].classList.remove("show");
+    let moves = document.querySelector('.moves');
+    moves.innerHTML = 0;
+    count = 0;
+  };
 };
 
+reset();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -36,6 +42,7 @@ const deck = document.querySelector(".deck");
 deck.addEventListener('click', function(event){
   revealCard(event.target);
   addCard(event.target);
+  counter();
 })
 
 let openCards = [];//list of open cards
@@ -88,8 +95,16 @@ function differentCards(card1, card2){
   }, 750);
 };
 
+function counter(){
+  count++;
+  let moves = document.querySelector('.moves');
+  moves.innerHTML = count;
+};
 
-
+const refresh = document.querySelector('.restart');
+refresh.addEventListener('click', function(){
+  reset();
+});
 
 
   /*
