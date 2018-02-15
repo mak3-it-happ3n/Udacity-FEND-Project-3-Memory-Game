@@ -1,10 +1,12 @@
 
  // Create a list that holds all of your cards
 const nodeList = document.querySelectorAll('.card');
-const list = Array.from(nodeList);
+let list = Array.from(nodeList);
 
+
+/////////////////Not working yet:
  // Shuffle the cards:
-shuffle(list);
+list = shuffle(list);
 
  // turning each card over by removing 3 classes:
 for (i = 0; i < list.length; i++){
@@ -48,23 +50,19 @@ function addCard(c){
   openCards.push(c);
   //compares if cards are the same
   if(openCards.length === 2){
-    let card1 = openCards[0].children.className;
-    let card2 = openCards[1].children.className;
-    if (card1 == card2) {
-      console.log("The same!");
-    } else {
-    console.log("not the same");
-    };
+    let card1 = openCards[0].querySelector('i').classList.value;
+    let card2 = openCards[1].querySelector('i').classList.value;
+    if (card1 == card2){
+      console.log('the same');
+    }
+      else {
+        console.log('different');
+      }
+    }
   };
 
-/*
 
-console.log(c.children);
 
-  };
-*/
-
-}
 
 
 
