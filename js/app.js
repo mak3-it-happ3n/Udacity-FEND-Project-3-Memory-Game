@@ -1,7 +1,7 @@
 
  // Create a list that holds all of your cards
-const list = document.querySelectorAll('.card');
-
+const nodeList = document.querySelectorAll('.card');
+const list = Array.from(nodeList);
 
  // Shuffle the cards:
 shuffle(list);
@@ -36,6 +36,7 @@ deck.addEventListener('click', function(event){
 
 let openCards = [];//list of open cards
 
+
 // function to reveal cards:
 function revealCard(c){
   c.classList.add("open");
@@ -45,7 +46,28 @@ function revealCard(c){
 // function to add revealed cards to list:
 function addCard(c){
   openCards.push(c);
+  //compares if cards are the same
+  if(openCards.length === 2){
+    let card1 = openCards[0].children.className;
+    let card2 = openCards[1].children.className;
+    if (card1 == card2) {
+      console.log("The same!");
+    } else {
+    console.log("not the same");
+    };
+  };
+
+/*
+
+console.log(c.children);
+
+  };
+*/
+
 }
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
