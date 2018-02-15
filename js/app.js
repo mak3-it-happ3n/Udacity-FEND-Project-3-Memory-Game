@@ -9,11 +9,13 @@ let list = Array.from(nodeList);
 list = shuffle(list);
 
  // turning each card over by removing 3 classes:
+
 for (i = 0; i < list.length; i++){
   list[i].classList.remove("match");
   list[i].classList.remove("open");
   list[i].classList.remove("show");
 };
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -56,13 +58,25 @@ function addCard(c){
       console.log('the same');
     }
       else {
-        console.log('different');
+        differentCards();
+        // setTimeout(differentCards(), 3000);
       }
     }
   };
 
+function sameCards(){
 
+}
 
+function differentCards(){
+  openCards = [];
+  setTimeout(function(){
+    for (i = 0; i < list.length; i++){
+      list[i].classList.remove("open");
+      list[i].classList.remove("show");
+    }
+  }, 750);
+}
 
 
 
