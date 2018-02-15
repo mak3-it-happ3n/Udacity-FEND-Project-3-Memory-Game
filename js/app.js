@@ -48,6 +48,7 @@ deck.addEventListener('click', function(event){
 let openCards = [];//list of open cards
 let rightCards = [];
 let wrongCards = [];
+let cardsLeft = 16;
 
 
 // function to reveal cards:
@@ -75,13 +76,14 @@ function addCard(c){
   };
 
 function sameCards(card1, card2){
-rightCards.push(card1);
-rightCards.push(card2);
-rightCards[0].classList.add("match");
-rightCards[1].classList.add("match");
-openCards = [];
-rightCards = [];
-}
+  rightCards.push(card1);
+  rightCards.push(card2);
+  rightCards[0].classList.add("match");
+  rightCards[1].classList.add("match");
+  openCards = [];
+  rightCards = [];
+  remainingDeck();
+};
 
 function differentCards(card1, card2){
   wrongCards.push(card1);
@@ -106,27 +108,17 @@ refresh.addEventListener('click', function(){
   reset();
 });
 
+// alert not working yet!
 
-  /*
-  setTimeout(function(){
-    for (i = 0; i < list.length; i++){
-      wrongCards[i].classList.remove("open");
-      wrongCards[i].classList.remove("show");
-    }
-  }, 750);
-}
-*/
-
-
-/*
-setTimeout(function(){
-  for (i = 0; i < list.length; i++){
-    list[i].classList.remove("open");
-    list[i].classList.remove("show");
+function remainingDeck(){
+  cardsLeft-=2;
+  console.log(cardsLeft);
+  if (cardsLeft === 0) {
+    alert("I am an alert box!");
+  } else {
+    alert("I am an alert box!");
   }
-}, 750);
-}
-*/
+};
 
 /*
  * set up the event listener for a card. If a card is clicked:
