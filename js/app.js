@@ -39,6 +39,8 @@ deck.addEventListener('click', function(event){
 })
 
 let openCards = [];//list of open cards
+let rightCards = [];
+let wrongCards = [];
 
 
 // function to reveal cards:
@@ -52,34 +54,64 @@ function addCard(c){
   openCards.push(c);
   //compares if cards are the same
   if(openCards.length === 2){
-    let card1 = openCards[0].querySelector('i').classList.value;
-    let card2 = openCards[1].querySelector('i').classList.value;
-    if (card1 == card2){
-      console.log('the same');
+    let card1 = openCards[0];
+    let card2 = openCards[1];
+    let card1Val = card1.querySelector('i').classList.value;
+    let card2Val = card2.querySelector('i').classList.value;
+    if (card1Val == card2Val){
+      sameCards(card1, card2);
     }
       else {
-        differentCards();
-        // setTimeout(differentCards(), 3000);
+        differentCards(card1, card2);
       }
     }
   };
 
-function sameCards(){
-
+function sameCards(card1, card2){
+rightCards.push(card1);
+rightCards.push(card2);
+rightCards[0].classList.add("match");
+rightCards[1].classList.add("match");
+openCards = [];
+rightCards = [];
 }
 
-function differentCards(){
+function differentCards(card1, card2){
+  wrongCards.push(card1);
+  wrongCards.push(card2);
   openCards = [];
   setTimeout(function(){
+    for (i = 0; i < wrongCards.length; i++){
+      wrongCards[i].classList.remove("open");
+      wrongCards[i].classList.remove("show");
+    }
+  }, 750);
+};
+
+
+
+
+
+  /*
+  setTimeout(function(){
     for (i = 0; i < list.length; i++){
-      list[i].classList.remove("open");
-      list[i].classList.remove("show");
+      wrongCards[i].classList.remove("open");
+      wrongCards[i].classList.remove("show");
     }
   }, 750);
 }
+*/
 
 
-
+/*
+setTimeout(function(){
+  for (i = 0; i < list.length; i++){
+    list[i].classList.remove("open");
+    list[i].classList.remove("show");
+  }
+}, 750);
+}
+*/
 
 /*
  * set up the event listener for a card. If a card is clicked:
