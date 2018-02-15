@@ -48,25 +48,21 @@ function addCard(c){
   openCards.push(c);
   //compares if cards are the same
   if(openCards.length === 2){
-    let card1 = openCards[0].children;
-    let card2 = openCards[1].children;
-    console.log(card1);
-    console.log(card2);
+    let card1 = openCards[0].children.className;
+    let card2 = openCards[1].children.className;
     if (card1 == card2) {
-      console.log("the same");
+      console.log("The same!");
     } else {
-      console.log("different");
+    console.log("not the same");
     };
   };
 
-  function sameCards(){
-    openCards=[];
-    console.log(openCards);
-  }
+/*
 
+console.log(c.children);
 
-
-
+  };
+*/
 
 }
 
