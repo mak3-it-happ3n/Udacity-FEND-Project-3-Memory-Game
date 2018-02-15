@@ -31,12 +31,20 @@ function shuffle(array) {
 const deck = document.querySelector(".deck");
 deck.addEventListener('click', function(event){
   revealCard(event.target);
+  addCard(event.target);
 })
+
+let openCards = [];//list of open cards
 
 // function to reveal cards:
 function revealCard(c){
   c.classList.add("open");
   c.classList.add("show");
+}
+
+// function to add revealed cards to list:
+function addCard(c){
+  openCards.push(c);
 }
 
 /*
