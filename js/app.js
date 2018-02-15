@@ -28,8 +28,16 @@ function shuffle(array) {
 }
 
  //event listener for a card
+const deck = document.querySelector(".deck");
+deck.addEventListener('click', function(event){
+  revealCard(event.target);
+})
 
-
+// function to reveal cards:
+function revealCard(c){
+  c.classList.add("open");
+  c.classList.add("show");
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
