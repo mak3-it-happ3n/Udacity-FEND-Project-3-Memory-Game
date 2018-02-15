@@ -1,15 +1,17 @@
-/*
- * Create a list that holds all of your cards
- */
+
+ // Create a list that holds all of your cards
+const list = document.querySelectorAll('.card');
 
 
+ // Shuffle the cards:
+shuffle(list);
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+ // turning each card over by removing 3 classes:
+for (i = 0; i < list.length; i++){
+  list[i].classList.remove("match");
+  list[i].classList.remove("open");
+  list[i].classList.remove("show");
+};
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -22,9 +24,11 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
+
+ //event listener for a card
+
 
 
 /*
