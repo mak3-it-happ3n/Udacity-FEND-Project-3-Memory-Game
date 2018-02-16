@@ -3,6 +3,8 @@
 const nodeList = document.querySelectorAll('.card');
 let list = Array.from(nodeList); //turns that list into an array
 
+// Shuffle the list of cards:
+list = shuffle(list);
 
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
@@ -11,21 +13,19 @@ let openCards = [];//list of open cards
 let rightCards = [];
 let wrongCards = [];
 let cardsLeft = 16;
-
- // Shuffle the list of cards:
-list = shuffle(list);
+let time = 0;
 
 /* Display shuffled cards
 (note: there is a problem in the function definiton */
-shuffledDeck();
+// shuffledDeck();
+
+//Testfunction:
+for (let i = 0; i < list.length; i++) {
+  console.log(list[i].innerHTML);
+}
 
  // turning each card over :
 reset();
-
-//starts the star rating:
-
-
-
 
 // function to reset by removing 3 classes and set moves to 0:
 function reset(){
@@ -73,6 +73,7 @@ deck.addEventListener('click', function(event){
   revealCard(event.target);
   addCard(event.target);
   counter();
+  timer();
 })
 
 // function to reveal cards:
@@ -146,21 +147,42 @@ function remainingDeck(){
   cardsLeft-=2;
   if (cardsLeft === 0) {
     count+=1;
+    let time2 = performance.now();
+    let timeMS = time2 - time;
+    time = Math.floor(timeMS / 1000);
     setTimeout(function(){
-      alert(`Congrats! You won the game with ${count} moves.`);
+
+      /*
+      window.open("congrats.html");
+      let text = document.querySelector('.final');
+      text.innerText = "Testomatic?!"; // not working yet
     }, 750);
+    */
+
+
+    setTimeout(function(){
+      alert(`Congrats! You won the game with ${count} moves in ${time} seconds.`);
+    }, 750)});
+
+
   }
 };
 
 function starRating2(){
   let rating = document.querySelector('.stars');
-  rating.children[0].children[0].classList.remove("fa-star")  
+  rating.children[0].children[0].classList.remove("fa-star")
 };
 
 function starRating1(){
   let rating = document.querySelector('.stars');
   rating.children[1].children[0].classList.remove("fa-star")
 };
+
+function timer(){
+  if (time === 0){
+    time = performance.now();
+  }
+}
 
 
 /*
