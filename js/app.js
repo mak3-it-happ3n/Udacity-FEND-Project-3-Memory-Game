@@ -3,23 +3,29 @@
 const nodeList = document.querySelectorAll('.card');
 let list = Array.from(nodeList); //turns that list into an array
 
+
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
 
- // Shuffle the cards:
+let openCards = [];//list of open cards
+let rightCards = [];
+let wrongCards = [];
+let cardsLeft = 16;
+
+ // Shuffle the list of cards:
 list = shuffle(list);
 
 /* Display shuffled cards
 (note: there is a problem in the function definiton */
 shuffledDeck();
 
-//Testfunction:
-for (let i = 0; i < list.length; i++) {
-  console.log(list[i].innerHTML);
-}
-
  // turning each card over :
 reset();
+
+//starts the star rating:
+
+
+
 
 // function to reset by removing 3 classes and set moves to 0:
 function reset(){
@@ -31,6 +37,7 @@ function reset(){
   let moves = document.querySelector('.moves');
   moves.innerHTML = 0;
   count = 0;
+  cardsLeft = 16;
 };
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -52,7 +59,7 @@ function shuffledDeck() {
   /* --->   THIS FUNCTION DOES NOT WORK CORRECTLY  <---
   (wrong result: card deck contains 3 or more of the same card) */
   for (let i = 0; i < list.length; i++){
-     deck.children[i].innerHTML = list[i].innerHTML;
+      deck.children[i].innerHTML = list[i].innerHTML;
   };
 };
 /* strange: BEFORE calling shuffleDeck(), list contains correct items.
@@ -67,11 +74,6 @@ deck.addEventListener('click', function(event){
   addCard(event.target);
   counter();
 })
-
-let openCards = [];//list of open cards
-let rightCards = [];
-let wrongCards = [];
-let cardsLeft = 16;
 
 // function to reveal cards:
 function revealCard(c){
@@ -97,6 +99,7 @@ function addCard(c){
     }
   };
 
+//perform if 2 cards are the same:
 function sameCards(card1, card2){
   rightCards.push(card1);
   rightCards.push(card2);
@@ -107,6 +110,7 @@ function sameCards(card1, card2){
   remainingDeck();
 };
 
+//perform if 2 cards are different:
 function differentCards(card1, card2){
   wrongCards.push(card1);
   wrongCards.push(card2);
@@ -119,12 +123,19 @@ function differentCards(card1, card2){
   }, 750);
 };
 
+//count and display moves
 function counter(){
   count++;
   let moves = document.querySelector('.moves');
   moves.innerHTML = count;
+  if (count === 5) {
+    starRating2();
+  } else if (count === 10) {
+    starRating1();
+  }
 };
 
+//click on refresh button
 const refresh = document.querySelector('.restart');
 refresh.addEventListener('click', function(){
   reset();
@@ -140,6 +151,17 @@ function remainingDeck(){
     }, 750);
   }
 };
+
+function starRating2(){
+  let rating = document.querySelector('.stars');
+  rating.children[0].children[0].classList.remove("fa-star")  
+};
+
+function starRating1(){
+  let rating = document.querySelector('.stars');
+  rating.children[1].children[0].classList.remove("fa-star")
+};
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
