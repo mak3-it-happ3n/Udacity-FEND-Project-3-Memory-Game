@@ -114,9 +114,10 @@ function remainingDeck(){
   cardsLeft-=2;
   console.log(cardsLeft);
   if (cardsLeft === 0) {
-    alert("I am an alert box!");
-  } else {
-    alert("I am an alert box!");
+    count+=1;
+    setTimeout(function(){
+      alert(`Congrats! You won the game with ${count} moves.`);
+    }, 750);
   }
 };
 
