@@ -1,27 +1,37 @@
 
- // Create a list that holds all of your cards
+ // Create a list that holds all of the cards
 const nodeList = document.querySelectorAll('.card');
-let list = Array.from(nodeList);
+let list = Array.from(nodeList); //turns that list into an array
 
-let count = 0;
+let count = 0; // counting moves
+const deck = document.querySelector(".deck");
 
-/////////////////Not working yet:
  // Shuffle the cards:
 list = shuffle(list);
 
- // turning each card over by removing 3 classes:
+/* Display shuffled cards
+(note: there is a problem in the function definiton */
+shuffledDeck();
+
+//Testfunction:
+for (let i = 0; i < list.length; i++) {
+  console.log(list[i].innerHTML);
+}
+
+ // turning each card over :
+reset();
+
+// function to reset by removing 3 classes and set moves to 0:
 function reset(){
-  for (i = 0; i < list.length; i++){
+  for (let i = 0; i < list.length; i++){
     list[i].classList.remove("match");
     list[i].classList.remove("open");
     list[i].classList.remove("show");
-    let moves = document.querySelector('.moves');
-    moves.innerHTML = 0;
-    count = 0;
   };
+  let moves = document.querySelector('.moves');
+  moves.innerHTML = 0;
+  count = 0;
 };
-
-reset();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -37,8 +47,21 @@ function shuffle(array) {
     return array;
 }
 
+// display shuffled cards in new oder:
+function shuffledDeck() {
+  /* --->   THIS FUNCTION DOES NOT WORK CORRECTLY  <---
+  (wrong result: card deck contains 3 or more of the same card) */
+  for (let i = 0; i < list.length; i++){
+     deck.children[i].innerHTML = list[i].innerHTML;
+  };
+};
+/* strange: BEFORE calling shuffleDeck(), list contains correct items.
+AFTER calling shuffleDecks, list contains wrong items.
+Why are the items in list modified at all when their innerHTML is assigned
+to deck.children[i].innerHTML? */
+
+
  //event listener for a card
-const deck = document.querySelector(".deck");
 deck.addEventListener('click', function(event){
   revealCard(event.target);
   addCard(event.target);
@@ -49,7 +72,6 @@ let openCards = [];//list of open cards
 let rightCards = [];
 let wrongCards = [];
 let cardsLeft = 16;
-
 
 // function to reveal cards:
 function revealCard(c){
@@ -90,7 +112,7 @@ function differentCards(card1, card2){
   wrongCards.push(card2);
   openCards = [];
   setTimeout(function(){
-    for (i = 0; i < wrongCards.length; i++){
+    for (let i = 0; i < wrongCards.length; i++){
       wrongCards[i].classList.remove("open");
       wrongCards[i].classList.remove("show");
     }
@@ -108,11 +130,9 @@ refresh.addEventListener('click', function(){
   reset();
 });
 
-// alert not working yet!
-
+// display alert message when all cards are resolved
 function remainingDeck(){
   cardsLeft-=2;
-  console.log(cardsLeft);
   if (cardsLeft === 0) {
     count+=1;
     setTimeout(function(){
