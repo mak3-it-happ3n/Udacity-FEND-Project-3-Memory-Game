@@ -114,6 +114,7 @@ innerHTML and leave 'list' completely unchanged... */
 
  //event listener for a card
 deck.addEventListener('click', function(event){
+
   revealCard(event.target);
   addCard(event.target);
   counter();
@@ -128,18 +129,20 @@ function revealCard(c){
 
 // @description add revealed cards to list:
 function addCard(c){
-  openCards.push(c);
-  //compares if cards are the same
-  if(openCards.length === 2){
-    let card1 = openCards[0];
-    let card2 = openCards[1];
-    let card1Val = card1.querySelector('i').classList.value;
-    let card2Val = card2.querySelector('i').classList.value;
-    if (card1Val == card2Val){
-      sameCards(card1, card2);
-    }
-      else {
-        differentCards(card1, card2);
+  if (openCards[0] != c) {
+    openCards.push(c);
+    //compares if cards are the same
+    if(openCards.length === 2){
+      let card1 = openCards[0];
+      let card2 = openCards[1];
+      let card1Val = card1.querySelector('i').classList.value;
+      let card2Val = card2.querySelector('i').classList.value;
+      if (card1Val == card2Val){
+        sameCards(card1, card2);
+      }
+        else {
+          differentCards(card1, card2);
+        }
       }
     }
   }
@@ -190,7 +193,6 @@ refresh.addEventListener('click', function(){
 function remainingDeck(){
   cardsLeft-=2;
   if (cardsLeft === 0) {
-    // count+=1;
     let time2 = performance.now();
     let timeMS = time2 - time;
     time = Math.floor(timeMS / 1000);
