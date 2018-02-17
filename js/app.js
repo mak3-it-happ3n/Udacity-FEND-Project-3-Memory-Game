@@ -9,6 +9,8 @@ list = shuffleOwn(list1);
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
 
+document.querySelector('.timer').innerHTML = 0;
+
 let openCards = []; //list of revealed cards
 let rightCards = [];
 let wrongCards = [];
@@ -105,6 +107,22 @@ function shuffle(array) {
 }
 */
 
+function countSeconds(){
+  setInterval(function(){
+    document.querySelector('.timer').innerHTML += 1;
+  }, 1000);
+
+  //document.querySelector('.timer').innerHTML = time;
+
+  /*
+  let seconds = document.querySelector('.timer').innerHTML;
+  seconds = time;
+  */
+  // setInterval(function(){seconds = time ; }, 1000);
+}
+
+// document.querySelector('.timer').innerHTML = time; // works
+
 // @description display shuffled cards in new oder:
 function shuffledDeck() {
   /* --->   THIS FUNCTION DOES NOT WORK CORRECTLY  <---
@@ -198,6 +216,7 @@ refresh.addEventListener('click', function(){
 });
 
 // @description display alert message when all cards are resolved
+// better: open new window with congrats & button to start again!
 function remainingDeck(){
   cardsLeft-=2;
   if (cardsLeft === 0) {
