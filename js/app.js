@@ -1,10 +1,10 @@
 
  // Create a list that holds all of the cards
 const nodeList = document.querySelectorAll('.card');
-let list = Array.from(nodeList); //turns that list into an array
+let list1 = Array.from(nodeList); //turns that list into an array
 
 // Shuffle the list of cards:
-list = shuffle(list);
+list = shuffleOwn(list1);
 
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
@@ -15,14 +15,36 @@ let wrongCards = [];
 let cardsLeft = 16;
 let time = 0;
 
+// note: no duplicated items in list up to this point (uncomment Testfunction below)
+//Testfunction:
+
+for (let i = 0; i < list.length; i++) {
+  console.log("index " + i +": " + list[i].innerHTML);
+};
+
+console.log(list[0].innerHTML);
+console.log(list[0].innerHTML);
+
+// note: strange behaviour: testfunction logs items in wrong order: even though
+// for-loop should list items starting with list[0].innerHTML. But after logging,
+// list[0].innerHTML does NOT match the first item from the for-loop.
+
 /* Display shuffled cards
 (note: there is a problem in the function definiton */
  shuffledDeck();
 
- //Testfunction:
- for (let i = 0; i < list.length; i++) {
-   console.log(list[i].innerHTML);
- };
+/*
+note: now there are duplicated items in the list (even though the list was not
+modified by shuffleDeck() (uncomment Testfunction below)
+*/
+/*
+//Testfunction:
+for (let i = 0; i < list.length; i++) {
+  console.log(list[i].innerHTML);
+};
+
+console.log(list[0].innerHTML);
+*/
 
  // turning each card over :
 reset();
@@ -40,6 +62,26 @@ function reset(){
   cardsLeft = 16;
 }
 
+// only for testing the shuffleOwn-function:
+
+let testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(testArray);
+testArray = shuffleOwn(testArray);
+console.log(testArray); // works fine without any duplicates!
+
+
+// @description my own shuffle function:
+function shuffleOwn(arr) {
+  let arrNew = [];
+  for (let itemsLeft = arr.length; itemsLeft > 0; itemsLeft--) {
+    let rndNum = Math.floor(Math.random() * (arr.length - 0) + 0);
+    arrNew.push(arr[rndNum]);
+    arr.splice(rndNum, 1);
+  }
+   return arrNew;
+}
+
+/*
 // @description Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -53,6 +95,7 @@ function shuffle(array) {
     }
     return array;
 }
+*/
 
 // @description display shuffled cards in new oder:
 function shuffledDeck() {
