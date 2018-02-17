@@ -115,10 +115,9 @@ innerHTML and leave 'list' completely unchanged... */
 
  //event listener for a card
 deck.addEventListener('click', function(event){
+  timer();
   revealCard(event.target);
   addCard(event.target);
-  counter();
-  timer();
 })
 
 // @description reveal cards:
@@ -129,7 +128,9 @@ function revealCard(c){
 
 // @description add revealed cards to list:
 function addCard(c){
-  if (openCards[0] != c) {
+  if (openCards[0] == c || openCards[1] == c) {
+    return;
+  }
     openCards.push(c);
     //compares if cards are the same
     if(openCards.length === 2){
@@ -144,7 +145,8 @@ function addCard(c){
           differentCards(card1, card2);
         }
       }
-    }
+      counter();
+
   }
 
 //@description perform if 2 cards are the same:
