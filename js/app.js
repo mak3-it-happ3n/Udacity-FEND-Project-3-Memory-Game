@@ -27,7 +27,7 @@ console.log(list[0].innerHTML);
 
 // note: strange behaviour: testfunction logs items in wrong order: even though
 // for-loop should list items starting with list[0].innerHTML. But after logging,
-// list[0].innerHTML does NOT match the first item from the for-loop.
+// list[0].innerHTML in the CONSOLE it does NOT match the first item from the for-loop.
 
 /* Display shuffled cards
 (note: there is a problem in the function definiton */
