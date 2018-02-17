@@ -14,6 +14,7 @@ let rightCards = [];
 let wrongCards = [];
 let cardsLeft = 16;
 let time = 0;
+let stars = 3;
 
 // note: no duplicated items in list up to this point (uncomment Testfunction below)
 //Testfunction:
@@ -114,7 +115,6 @@ innerHTML and leave 'list' completely unchanged... */
 
  //event listener for a card
 deck.addEventListener('click', function(event){
-
   revealCard(event.target);
   addCard(event.target);
   counter();
@@ -198,7 +198,8 @@ function remainingDeck(){
     time = Math.floor(timeMS / 1000);
 
     setTimeout(function(){
-      alert(`Congrats! You won the game with ${count} moves in ${time} seconds.`);
+      alert(`Congrats! You won the game with ${count} moves in ${time} seconds!
+        That's a ${stars}-star rating!`);
     }, 750);
   }
 }
@@ -206,13 +207,15 @@ function remainingDeck(){
 //@description reducing starts from 3 to 2
 function starRating2(){
   let rating = document.querySelector('.stars');
-  rating.children[0].children[0].classList.remove("fa-star")
+  rating.children[0].children[0].classList.remove("fa-star");
+  stars = 2;
 }
 
 //@description reducing stars from 2 to 1
 function starRating1(){
   let rating = document.querySelector('.stars');
   rating.children[1].children[0].classList.remove("fa-star")
+  stars = 1;
 }
 
 //@description start timer if it's not already running
