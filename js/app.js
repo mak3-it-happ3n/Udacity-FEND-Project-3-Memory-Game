@@ -51,17 +51,23 @@ console.log(list[0].innerHTML);
  // turning each card over :
 reset();
 
-// @description reset by removing 3 classes and set moves to 0:
+// @description reset the game to starting point:
 function reset(){
-  for (let i = 0; i < list.length; i++){
+  for (let i = 0; i < list.length; i++){  // resetting the cards
     list[i].classList.remove("match");
     list[i].classList.remove("open");
     list[i].classList.remove("show");
   };
-  let moves = document.querySelector('.moves');
+  let moves = document.querySelector('.moves'); // resetting the moves & timer
   moves.innerHTML = 0;
   count = 0;
   cardsLeft = 16;
+  stars = 3;
+  time = 0;
+  let rating = document.querySelector('.stars');  // resetting the stars
+  rating.children[0].innerHTML = '<i class="fa fa-star"></i>';
+  rating.children[1].innerHTML = '<i class="fa fa-star"></i>';
+  rating.children[2].innerHTML = '<i class="fa fa-star"></i>';
 }
 
 // only for testing the shuffleOwn-function:
@@ -198,10 +204,10 @@ function remainingDeck(){
     let time2 = performance.now();
     let timeMS = time2 - time;
     time = Math.floor(timeMS / 1000);
-
     setTimeout(function(){
       alert(`Congrats! You won the game with ${count} moves in ${time} seconds!
-        That's a ${stars}-star rating!`);
+        That's a ${stars}-star rating!
+        Do you want to play again?`);
     }, 750);
   }
 }
