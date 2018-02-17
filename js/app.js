@@ -31,7 +31,8 @@ console.log(list[0].innerHTML);
 
 /* Display shuffled cards
 (note: there is a problem in the function definiton */
- shuffledDeck();
+
+// shuffledDeck();
 
 /*
 note: now there are duplicated items in the list (even though the list was not
@@ -172,9 +173,9 @@ function counter(){
   count++;
   let moves = document.querySelector('.moves');
   moves.innerHTML = count;
-  if (count === 5) {
+  if (count === 20) {
     starRating2();
-  } else if (count === 10) {
+  } else if (count === 25) {
     starRating1();
   }
 }
@@ -189,7 +190,7 @@ refresh.addEventListener('click', function(){
 function remainingDeck(){
   cardsLeft-=2;
   if (cardsLeft === 0) {
-    count+=1;
+    // count+=1;
     let time2 = performance.now();
     let timeMS = time2 - time;
     time = Math.floor(timeMS / 1000);
