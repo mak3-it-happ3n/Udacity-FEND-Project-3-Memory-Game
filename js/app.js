@@ -17,39 +17,8 @@ let time = 0; //seconds played since first click
 let timerStatus = "off";
 let stars = 3; //current star-rating
 
-// note: no duplicated items in list up to this point (uncomment Testfunction below to confirm)
-
-//Testfunction:
-
-for (let i = 0; i < list.length; i++) {
-  console.log("index " + i +": " + list[i].innerHTML);
-};
-console.log(list[0].innerHTML);
-console.log(list[0].innerHTML);
-
-/*
-note: strange behaviour: testfunction logs items in wrong order: even though
-for-loop should list items starting with list[0].innerHTML. But after logging,
-list[0].innerHTML manually in the CONSOLE it does NOT match the first item from the for-loop! why?
-*/
-
-/* Display shuffled cards
-(note: there is a problem in the function definiton */
-
+// Please see README.md for details on shuffleDeck()!
 //shuffledDeck();
-
-/*
-note: now there are duplicated items in the list (even though the list was not
-modified by shuffleDeck() (uncomment Testfunction below)
-*/
-/*
-//Testfunction:
-for (let i = 0; i < list.length; i++) {
-  console.log(list[i].innerHTML);
-};
-
-console.log(list[0].innerHTML);
-*/
 
  // turning each card over :
 reset();
@@ -75,14 +44,6 @@ function reset(){
   rating.children[2].innerHTML = '<i class="fa fa-star"></i>';
 }
 
-// only for testing the shuffleOwn-function:
-/*
-let testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-console.log(testArray);
-testArray = shuffleOwn(testArray);
-console.log(testArray); // works fine without any duplicates!
-*/
-
 // @description my own shuffle function:
 function shuffleOwn(arr) {
   let arrNew = [];
@@ -94,35 +55,12 @@ function shuffleOwn(arr) {
    return arrNew;
 }
 
-/*
-// @description Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    return array;
-}
-*/
-
 // @description display shuffled cards in new oder:
 function shuffledDeck() {
-  /* --->   THIS FUNCTION DOES NOT WORK CORRECTLY  <---
-  (wrong result: card deck contains 3 or more of the same card) */
   for (let i = 0; i < list.length; i++){
       deck.children[i].innerHTML = list[i].innerHTML;
   };
 }
-/* strange: BEFORE calling shuffleDeck(), 'list' contains correct items.
-AFTER calling shuffleDecks(), 'list' contains wrong items.
-But why are the items in 'list' modified by shuffleDeck()?
-The idea was to just assign list's innerHTML values to deck.children's
-innerHTML and leave 'list' completely unchanged... */
 
  //event listener for a card
 deck.addEventListener('click', function(event){
@@ -212,13 +150,6 @@ function remainingDeck(){
     That's a ${stars}-star rating!
     Do you want to play again?`);
     reset();
-    /*
-    setTimeout(function(message){
-      let myWindow = window.open("congrats.html", "myWindow", "width=350, height=250");
-      myWindow.document.write("<p>This is 'myWindow'</p>");
-    }, 750);
-     myWindow.document.write("<p>This is 'myWindow'</p>");
-     */
   }
 }
 
@@ -250,7 +181,7 @@ function timer() {
         if (timerStatus === "on") {
           document.querySelector('.timer').innerHTML = time;
         } else {
-          return;
+          return;commanccsadsfdsdf
         }
       }, 1000);
     }
