@@ -220,9 +220,6 @@ refresh.addEventListener('click', function(){
 function remainingDeck(){
   cardsLeft-=2;
   if (cardsLeft === 0) {
-    let time2 = performance.now();
-    let timeMS = time2 - time;
-    time = Math.floor(timeMS / 1000);
     setTimeout(function(){
       alert(`Congrats! You won the game with ${count} moves in ${time} seconds!
         That's a ${stars}-star rating!
@@ -247,7 +244,12 @@ function starRating1(){
 
 //@description start timer if it's not already running
 function timer(){
-  if (time === 0){
-    time = performance.now();
+  if (time === 0) {
+    setInterval(function(){   // sets time
+      time += 1;
+    }, 1000);
+    setInterval(function(){
+      document.querySelector('.timer').innerHTML = time;
+    }, 1000);
   }
 }
