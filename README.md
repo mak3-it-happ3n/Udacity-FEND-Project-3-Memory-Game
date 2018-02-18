@@ -3,8 +3,8 @@
 The process of assigning the cards shuffled values does not work correctly
 and hinders the games workflow. The function `shuffledDeck()` is therefore currently deactivated.
 
-To activate the function, simply uncomment the function call on
-`//shuffledDeck() `line 21.
+To activate the function, simply uncomment the function call
+`//shuffledDeck() `on line 21.
 This will result in a strange mix of some **card values being assigned
 3, 4 or even 5 times with others missing completely**. As a result, the game cannot
 be finished with the function `shuffledDeck()` active (hence why it is paused).
@@ -14,7 +14,9 @@ be finished with the function `shuffledDeck()` active (hence why it is paused).
   - before calling shuffledDeck, this **test-function** was used to log all items of
   list:
 
-`for (let i = 0; i < list.length; i++) { console.log("index " + i +": " + list[i].innerHTML); }; console.log(list[0].innerHTML);`
+`for (let i = 0; i < list.length; i++) {
+   console.log("index " + i +": " + list[i].innerHTML); };
+  console.log(list[0].innerHTML);`
 
 This works fine, each item is in the list twice and the first item logged (index 0) is the same as the additional one logged at the bottom via the additional `console.log(list[0].innerHTML)`, which makes perfect sense.
 
@@ -22,7 +24,10 @@ However, if I now enter `list[0].innerHTML` in the console **manually**, i am sh
 
 The real problem then starts with my way of assigning the (correctly logged) list to the HTML elements. I use:
 
-`const deck = document.querySelector(".deck"); for (let i = 0; i < list.length; i++){ deck.children[i].innerHTML = list[i].innerHTML; };`
+`const deck = document.querySelector(".deck");
+ for (let i = 0; i < list.length; i++) {
+   deck.children[i].innerHTML = list[i].innerHTML;
+  };`
 
 My understanding was that this for loop would:
 
