@@ -5,7 +5,7 @@ let list = Array.from(nodeList); //turns that list into an array
 
 // Shuffle the list of cards:
  list = shuffleOwn(list);
-
+let preCount = 0;
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
 document.querySelector('.timer').innerHTML = 0;
@@ -33,6 +33,7 @@ function reset(){
   let moves = document.querySelector('.moves'); // resetting the moves & timer
   moves.innerHTML = 0;
   count = 0;
+  preCount = 0;
   cardsLeft = 16;
   stars = 3;
   timerStatus = "off"
@@ -64,6 +65,7 @@ function shuffledDeck() {
 
  //event listener for a card
 deck.addEventListener('click', function(event){
+  alert("Please refer to README.md for a detailed description of the problem. I need help with this and the last reviewer completely ignored it, pretending everything works fine. Thank you!");
   if (timerStatus === "off") {
     timerStatus = "on";
     timer();
@@ -126,13 +128,17 @@ function differentCards(card1, card2){
 
 //@description count and display moves
 function counter(){
-  count++;
-  let moves = document.querySelector('.moves');
-  moves.innerHTML = count;
-  if (count === 20) {
-    starRating2();
-  } else if (count === 25) {
-    starRating1();
+  preCount++;
+  if (preCount === 2) {
+    preCount = 0;
+    count++;
+    let moves = document.querySelector('.moves');
+    moves.innerHTML = count;
+    if (count === 10) {
+      starRating2();
+    } else if (count === 13) {
+      starRating1();
+    }
   }
 }
 
