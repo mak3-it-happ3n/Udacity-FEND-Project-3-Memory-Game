@@ -4,14 +4,14 @@ The process of assigning the cards shuffled values does not work correctly
 and hinders the games workflow. The function `shuffledDeck()` is therefore currently deactivated.
 
 To activate the function, simply uncomment the function call
-`//shuffledDeck() `on line 21.
+`//shuffledDeck() `on line 28.
 This will result in a strange mix of some **card values being assigned
 3, 4 or even 5 times with others missing completely**. As a result, the game cannot
 be finished with the function `shuffledDeck()` active (hence why it is paused).
 
 **The following has been done to find/solve the issue:**
 
-  - before calling shuffledDeck, this **test-function** was used to log all items of
+  - before calling shuffledDeck, this **test-function** was used **on line 22** to log all items of
   list:
 
 `for (let i = 0; i < list.length; i++) {
@@ -47,11 +47,13 @@ To sum it up, all **I want to do is:**
 The timer works fine _most of the time_, however in some instances it counts too
 quickly. I tried to resolve the issue by **including restrictive checks** on whether
 or not the timer should run at all, but this didn't resolve the issue. The timer
- counting too quickly becomes **especially obvious when clicking on restart**.
+ counting too quickly becomes **often obvious when clicking on restart**.
 
+## alert messages
+to stop the alert messages, simply **comment-out the code in line 75**
 
-
-
+previous content of README.md (can be ignored):
+_____________________________________________________________________________
 # Memory Game Project
 
 ## Table of Contents

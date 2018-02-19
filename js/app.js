@@ -4,7 +4,7 @@ const nodeList = document.querySelectorAll('.card');
 let list = Array.from(nodeList); //turns that list into an array
 
 // Shuffle the list of cards:
- list = shuffleOwn(list);
+list = shuffleOwn(list);
 let preCount = 0;
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
@@ -16,6 +16,13 @@ let cardsLeft = 16; //list of unresolved cards
 let time = 0; //seconds played since first click
 let timerStatus = "off";
 let stars = 3; //current star-rating
+
+/*
+//@description: test-function
+for (let i = 0; i < list.length; i++) {
+   console.log("index " + i +": " + list[i].innerHTML); };
+  console.log(list[0].innerHTML);
+  */
 
 // Please see README.md for details on shuffleDeck()!
 //shuffledDeck();
