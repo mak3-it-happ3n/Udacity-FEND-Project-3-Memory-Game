@@ -2,9 +2,15 @@
  // Create a list that holds all of the cards
 const nodeList = document.querySelectorAll('.card');
 let list = Array.from(nodeList); //turns that list into an array
+let listFinal = [];
+
+for (let i = 0; i < list.length; i++) {
+  listFinal.push(list[i].children[0].classList.value);
+}
 
 // Shuffle the list of cards:
-list = shuffleOwn(list);
+// list = shuffleOwn(list);
+listFinal = shuffleOwn(listFinal);
 let preCount = 0;
 let count = 0; // counting moves
 const deck = document.querySelector(".deck");
@@ -17,15 +23,8 @@ let time = 0; //seconds played since first click
 let timerStatus = "off";
 let stars = 3; //current star-rating
 
-/*
-//@description: test-function
-for (let i = 0; i < list.length; i++) {
-   console.log("index " + i +": " + list[i].innerHTML); };
-  console.log(list[0].innerHTML);
-  */
-
 // Please see README.md for details on shuffleDeck()!
-//shuffledDeck();
+shuffledDeck(listFinal);
 
  // turning each card over :
 reset();
@@ -64,15 +63,15 @@ function shuffleOwn(arr) {
 }
 
 // @description display shuffled cards in new oder:
-function shuffledDeck() {
-  for (let i = 0; i < list.length; i++){
-      deck.children[i].innerHTML = list[i].innerHTML;
+function shuffledDeck(arr) {
+  for (let i = 0; i < arr.length; i++){
+      deck.children[i].children[0].classList = arr[i];
   };
 }
 
  //event listener for a card
 deck.addEventListener('click', function(event){
-  alert("Please refer to README.md for a detailed description of the problem. I need help with this and the last reviewer completely ignored it, pretending everything works fine. Thank you!");
+  // alert("Please refer to README.md for a detailed description of the problem. I need help with this and the last reviewer completely ignored it, pretending everything works fine. Thank you!");
   if (timerStatus === "off") {
     timerStatus = "on";
     timer();
@@ -159,10 +158,12 @@ refresh.addEventListener('click', function(){
 function remainingDeck(){
   cardsLeft-=2;
   if (cardsLeft === 0) {
+    setTimeout(function(){
     alert(`Congrats! You won the game with ${count} moves in ${time} seconds!
     That's a ${stars}-star rating!
     Do you want to play again?`);
     reset();
+  }, 750);
   }
 }
 
