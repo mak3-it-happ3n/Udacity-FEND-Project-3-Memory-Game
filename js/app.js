@@ -195,7 +195,7 @@ function timer() {
         if (timerStatus === "on") {
           document.querySelector('.timer').innerHTML = time;
         } else {
-          return;commanccsadsfdsdf
+          return;
         }
       }, 1000);
     }
