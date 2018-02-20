@@ -31,6 +31,8 @@ reset();
 
 // @description reset the game to starting point:
 function reset(){
+  listFinal = shuffleOwn(listFinal);
+  shuffledDeck(listFinal);
   for (let i = 0; i < list.length; i++){  // resetting the cards
     list[i].classList.remove("match");
     list[i].classList.remove("open");
@@ -70,8 +72,7 @@ function shuffledDeck(arr) {
 }
 
  //event listener for a card
-deck.addEventListener('click', function(event){
-  // alert("Please refer to README.md for a detailed description of the problem. I need help with this and the last reviewer completely ignored it, pretending everything works fine. Thank you!");
+deck.addEventListener('click', function(event){ 
   if (timerStatus === "off") {
     timerStatus = "on";
     timer();
