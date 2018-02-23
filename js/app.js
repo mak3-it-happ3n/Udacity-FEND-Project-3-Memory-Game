@@ -22,11 +22,9 @@ let cardsLeft = 16; //list of unresolved cards
 let time = 0; //seconds played since first click
 let timerStatus = "off";
 let stars = 3; //current star-rating
+let timerUpdate; //update function for timer will be stored here (on global scope)
 
-// Please see README.md for details on shuffleDeck()!
-shuffledDeck(listFinal);
-
- // turning each card over :
+ // turning each card over & resetting the game:
 reset();
 
 // @description reset the game to starting point:
@@ -44,9 +42,10 @@ function reset(){
   preCount = 0;
   cardsLeft = 16;
   stars = 3;
-  timerStatus = "off"
+  timerStatus = "off";
+  stopTimer();
   time = 0;
-  document.querySelector('.timer').innerHTML = time;
+  document.querySelector('.timer').innerHTML = 0;
   let rating = document.querySelector('.stars');  // resetting the stars
   rating.children[0].innerHTML = '<i class="fa fa-star"></i>';
   rating.children[1].innerHTML = '<i class="fa fa-star"></i>';
@@ -64,7 +63,7 @@ function shuffleOwn(arr) {
    return arrNew;
 }
 
-// @description display shuffled cards in new oder:
+// @description assigns the shuffled list elements to the cards
 function shuffledDeck(arr) {
   for (let i = 0; i < arr.length; i++){
       deck.children[i].children[0].classList = arr[i];
@@ -72,10 +71,10 @@ function shuffledDeck(arr) {
 }
 
  //event listener for a card
-deck.addEventListener('click', function(event){ 
-  if (timerStatus === "off") {
+deck.addEventListener('click', function(event){
+  if (timerStatus === "off") { //only run at the first click
     timerStatus = "on";
-    timer();
+    timerUpdate = setInterval(function(){timer()}, 1000);
   }
   revealCard(event.target);
   addCard(event.target);
@@ -182,22 +181,13 @@ function starRating1(){
   stars = 1;
 }
 
-//@description start timer if it's not already running
+//@description increases the seconds by 1
 function timer() {
-    if (time === 0) {
-      setInterval(function(){   // sets time
-        if (timerStatus === "on") {
-          time += 1;
-        } else {
-          return;
-        }
-      }, 1000);
-      setInterval(function(){
-        if (timerStatus === "on") {
-          document.querySelector('.timer').innerHTML = time;
-        } else {
-          return;
-        }
-      }, 1000);
-    }
+  time += 1;
+  document.querySelector('.timer').innerHTML = time;
+}
+
+//@description stops the interval function saved under timerUpade
+function stopTimer(){
+  clearInterval(timerUpdate);
 }
