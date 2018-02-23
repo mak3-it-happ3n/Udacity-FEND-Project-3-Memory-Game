@@ -162,6 +162,8 @@ function remainingDeck(){
     alert(`Congrats! You won the game with ${count} moves in ${time} seconds!
     That's a ${stars}-star rating!
     Do you want to play again?`);
+    /* even BETTER than an alert: a modal! https://www.w3schools.com/howto/howto_css_modals.asp
+    */
     reset();
   }, 750);
   }
